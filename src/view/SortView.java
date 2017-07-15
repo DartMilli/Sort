@@ -1,11 +1,11 @@
-package sort.view;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JPanel;
-import sort.model.Sort;
+import model.Sort;
 
 /**
  *

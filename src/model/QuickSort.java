@@ -1,4 +1,4 @@
-package sort.model;
+package model;
 
 /**
  *
@@ -8,50 +8,11 @@ public class QuickSort extends Sort {
 
     private int left;
     private int right;
-    private int lastIndex;
-    private int lastLeft;
-    private int lastRight;
-    private int lastPivot;
-    private int lastI;
-    private int lastJ;
 
     public QuickSort(int[] numbers) {
         super(numbers);
         left = 0;
         right = sorted.length - 1;
-        lastPivot = sorted[(left + right) / 2];
-        lastI = left;
-        lastJ = right;
-        lastLeft = left;
-        lastRight = right;
-    }
-
-    @Override
-    public void sortStep() {
-        lastPivot = sorted[(left + right) / 2];
-        if (lastI > lastJ) {
-            lastI = left;
-            lastJ = right;
-            if (compare(lastIndex - 1, left)) {
-                right = lastIndex - 1;
-            } else if (compare(right, lastIndex)) {
-                left = lastIndex;
-            }
-        } else {
-            while (sorted[lastI] < lastPivot) {
-                lastI++;
-            }
-            while (sorted[lastJ] > lastPivot) {
-                lastJ--;
-            }
-            if (lastI <= lastJ) {
-                replace(lastI, lastJ);
-                lastI++;
-                lastJ--;
-            }
-            lastIndex = lastI;
-        }
-
     }
 
     @Override
@@ -76,9 +37,11 @@ public class QuickSort extends Sort {
         int pivot = sorted[(left + right) / 2];
         while (i <= j) {
             while (sorted[i] < pivot) {
+                compareIndexToNumber(i, pivot);
                 i++;
             }
             while (sorted[j] > pivot) {
+                compareIndexToNumber(j, pivot);
                 j--;
             }
             if (i <= j) {

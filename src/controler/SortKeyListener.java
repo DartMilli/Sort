@@ -1,8 +1,8 @@
-package sort.controler;
+package controler;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import sort.view.SortView;
+import view.SortView;
 
 /**
  *
@@ -45,13 +45,11 @@ public class SortKeyListener implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent ke
-    ) {
+    public void keyPressed(KeyEvent ke) {
     }
 
     @Override
-    public void keyReleased(KeyEvent ke
-    ) {
+    public void keyReleased(KeyEvent ke) {
     }
 
 }

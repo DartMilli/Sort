@@ -1,26 +1,21 @@
-package sort.model;
+package model;
 
 /**
  *
  * @author Milán
  */
 public class MergeSort extends Sort {
-    
+
     private int[] helper;
-    
+
     public MergeSort(int[] numbers) {
         super(numbers);
     }
 
     @Override
-    public void sortStep() {
-        
-    }
-
-    @Override
     public void sortMe() {
         helper = new int[sorted.length];
-        mergesort(0, sorted.length-1);
+        mergesort(0, sorted.length - 1);
     }
 
     private void mergesort(int low, int high) {
@@ -51,10 +46,13 @@ public class MergeSort extends Sort {
         // to the original array
         while (i <= middle && j <= high) {
             if (helper[i] <= helper[j]) {
+                compare(getIndexInSorted(helper[i]), getIndexInSorted(helper[j]));
                 sorted[k] = helper[i];
+                increaseReplacement();
                 i++;
             } else {
                 sorted[k] = helper[j];
+                increaseReplacement();
                 j++;
             }
             k++;
@@ -62,6 +60,7 @@ public class MergeSort extends Sort {
         // Copy the rest of the left side of the array into the target array
         while (i <= middle) {
             sorted[k] = helper[i];
+            increaseReplacement();
             k++;
             i++;
         }

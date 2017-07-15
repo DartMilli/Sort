@@ -1,4 +1,4 @@
-package sort.model;
+package model;
 
 /**
  *
@@ -8,11 +8,6 @@ public class ShellSort extends Sort {
 
     public ShellSort(int[] numbers) {
         super(numbers);
-    }
-
-    @Override
-    public void sortStep() {
-
     }
 
     @Override
@@ -30,13 +25,14 @@ public class ShellSort extends Sort {
                 inner = outer;
 
                 while (inner > h - 1 && sorted[inner - h] >= temp) {
-                    sorted[inner] = sorted[inner - h];
+                    compareIndexToNumber(inner - h, temp);
+                    replace(inner, inner - h);
                     inner -= h;
                 }
                 sorted[inner] = temp;
+                increaseReplacement();
             }
             h = (h - 1) / 3;
         }
     }
-
 }

@@ -1,6 +1,6 @@
-package sort.controler;
+package controler;
 
-import sort.view.Window;
+import view.Window;
 
 /**
  *

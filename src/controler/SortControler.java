@@ -1,11 +1,21 @@
-package sort.controler;
+package controler;
 
+import model.ShellSort;
+import model.Sort;
+import model.SelectionSort;
+import model.BubbleSort;
+import model.MergeSort;
+import model.CoctailSort;
+import model.HeapSort;
+import model.InsertionSort;
+import model.QuickSort;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
-import sort.model.*;
-import sort.view.SortView;
+import view.SortView;
 
 /**
  *
@@ -15,31 +25,28 @@ public class SortControler {
 
     private static SortView[] view;
     private static Sort[] model;
+    private static Thread[] thread;
     private static int row;
     private static int column;
     private static Dimension dimension;
     private static boolean run;
-    private static boolean stepByStep = false;
     private static Timer clock = new Timer(1, new ActionListener() {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             for (int i = 0; i < view.length; i++) {
-                if (stepByStep) {
-                    view[i].getModel().sortStep();
-                }
                 view[i].repaint();
             }
         }
-
     });
 
     public SortControler(Dimension dmsn) {
         this.dimension = dmsn;
-        int[] list = Sort.generateRandomNumbers(100);
-        
+        int[] list = Sort.generateRandomNumbers(500);
+
         view = new SortView[8];
         model = new Sort[8];
+        thread = new Thread[8];
         
         model[0] = new BubbleSort(list.clone());
         model[1] = new CoctailSort(list.clone());
@@ -49,11 +56,13 @@ public class SortControler {
         model[5] = new HeapSort(list.clone());
         model[6] = new ShellSort(list.clone());
         model[7] = new MergeSort(list.clone());
-        
+
         for (int i = 0; i < view.length; i++) {
             view[i] = new SortView(model[i]);
+            model[i].setView(view[i]);
+            thread[i] = new Thread(view[i].getModel());
         }
-        
+
         run = false;
         column = 1;
         row = view.length / column;
@@ -105,20 +114,16 @@ public class SortControler {
 
     public static void startSort() {
         clock.start();
-        if (!stepByStep) {
-            for (int i = 0; i < view.length; i++) {
-                view[i].getModel().sortMe();
-            }
+        for (int i = 0; i < view.length; i++) {
+            thread[i].start();
         }
+
     }
 
     public static void stopSort() {
         clock.stop();
-    }
-
-    public static void refresh() {
         for (int i = 0; i < view.length; i++) {
-            view[i].repaint();
+            thread[i].interrupt();
         }
     }
 }

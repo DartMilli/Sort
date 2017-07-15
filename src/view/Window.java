@@ -1,12 +1,12 @@
-package sort.view;
+package view;
 
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
-import sort.controler.SortControler;
-import sort.controler.SortKeyListener;
+import controler.SortControler;
+import controler.SortKeyListener;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Window extends JFrame {
         );
         setSize(new Dimension(dmsn));
 
-        setTitle("Sort 1.0.0");
+        setTitle("Sort 1.0.2");
         setLayout(null);
         setResizable(false);
 

@@ -1,4 +1,4 @@
-package sort.model;
+package model;
 
 /**
  *
@@ -10,11 +10,6 @@ public class HeapSort extends Sort {
 
     public HeapSort(int[] numbers) {
         super(numbers);
-    }
-
-    @Override
-    public void sortStep() {
-
     }
 
     @Override
