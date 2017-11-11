@@ -12,8 +12,6 @@ import model.QuickSort;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Timer;
 import view.SortView;
 

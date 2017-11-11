@@ -2,6 +2,7 @@ package controler;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import model.Sort;
 import view.SortView;
 
 /**
@@ -41,6 +42,14 @@ public class SortKeyListener implements KeyListener {
             for (int i = 0; i < view.length; i++) {
                 view[i].decreaseThickness();
             }
+        } else if (key == 's') {
+            int speed = Sort.getSortSpeedInMilisecond();
+            if (speed > 2) {
+                Sort.setSortSpeedInMilisecond(speed-1);
+            }
+        } else if (key == 'S') {
+            int speed = Sort.getSortSpeedInMilisecond()+1;
+            Sort.setSortSpeedInMilisecond(speed);
         }
     }
 
